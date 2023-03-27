@@ -44,6 +44,14 @@ task('dev:deploy-volatile-market-deployer').setAction(async (taskArgs, hre) => {
       'contracts/markets/VolatileMarketDeployerFlatten.sol:VolatileMarketDeployer',
     ),
     constructorArguments,
+    undefined,
+    [
+      (
+        await deployer.loadArtifact(
+          'contracts/markets/VolatileMarketDeployerFlatten.sol:VolatileMarket',
+        )
+      ).bytecode,
+    ],
   )
   liveLog(
     `VolatileMarketDeployer was deployed as ${volatileMarketDeployer.address}`,
